@@ -1,0 +1,14 @@
+/*Theme Name: twentyseventeen-child
+Theme URI: http://mon-site.com
+Description: Theme enfant d ' un autre theme
+Author: Brin de webAuthor
+URI: http://www.brindeweb.com
+Template: twentyseventeenVersion:
+1.0
+*/
+@import url("../twentyseventeen/style.css");
+
+
+.custom-header{
+	background-color: rgb(0,142,194);
+}

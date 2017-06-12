@@ -1,0 +1,28 @@
+﻿Comme ce n'est pas bien de travailler directement dans le dossier du thème principal on va pas le faire mais créez un thème enfant(page 166 du PDF) qui va surcharger les fichiers et fonctions. Le principal avantage et de ne pas perdre ces modifications lors d'une future mise à jour du thème.
+
+Vous pouvez travaillez sur l'installation actuelle ou faire une nouvelle installation si vous voulez pas "casser" le site sur lequel vous travaillez depuis le début, si c'est votre choix, répartez du zip de wordpress que vous avez téléchargez, créez une nouvelle base dans phpmyadmin et lancez la nouvelle installation.
+
+Créez un thème enfant du thème par défaut "twentyseventeen" déjà existant.
+Il faut que le répertoire soit nommé pareil avec -child à la fin du nom de dossier.
+Pour le reste, cela se trouve dans page 166 du PDF.
+
+Un fois le thème enfant activé et grâce à ce nouveau fichier de style, vous pouvez surcharger les styles, les fichiers de template qui se trouveront dans votre thème enfant seront pris en premier (single.php, page.php...) et grâce à cela vous pouvez tout personnaliser sans perdre les modifications à la prochaine mise à jour du thème parent.
+
+1. Changez la couleur du fond du header pour voir si votre fichier style fraîchement crée et pris en compte
+
+2. Dupliquez le fichier single.php ( c'est lui qui s'occupe de la mise en forme de des articles du site ) du thème parent et déposez le dans votre dossier twentyseventeen-child
+
+3. Créez un champs personnalisé (p161/p162). Sur l'édition d'un article, n'oubliez pas de cliquez sur "Options de l'écran" et cochez "Champs personnalisé"
+
+4. Tout en bas, vous avez accès à la possibilité de créer un nouveau champs personnalisé, créez un champs "note" et/ou "prix" et donnez lui une valeur quelconque, enregistrez la article
+
+5. Par défaut, les champs personnalisés ne s'affiche pas sur la partie publique, c'est à vous de dire/ecrire le code de où et comment les afficher dans le template single.php
+
+6. Ouvrez le fichier single.php et ajoutez à l'intérieur de la boucle while
+<?php echo get_post_meta($post->ID, ' nom-du-champ ' , true); ?>
+Remplacez nom-du-champ par le nom de votre champs personnalisé ( attention, c'est case sensitive -> en FR sensible à la casse, attention de bien mettre les majuscule/miniscule)
+
+Aussi plutôt que le poser directement le echo du champs perso dans la boucle while, il y a une fonction importante qui est l'équivalent d'un include pour insérer un bout de template dans un autre, c'est la fonction get_template_part()
+
+Pour cela créez un dossier template-parts/post/ dans votre répertoire de thème enfant et copier le fichier du theme parent /template-parts/post/content.php et déposez le dans le dossier que vous venez de créer, modifiez-le sous la fonction the_content() qui affiche le contenu de l'article donc et votre prix ou note, s'affichera juste en dessous, vous pouvez bien sur mettre un div et class CSS pour charté cette note pour la mettre en valeur.
+

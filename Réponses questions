@@ -1,0 +1,20 @@
+﻿Citez les différences entre les 2 types : Articles(aussi connu comme billet et post) et les Pages ? 
+Une page est un contenu permanent, static, qui n'évoluera pas beaucoup au fil du temps. Il se situe hors du flux des articles qui lui est destiné à évoluer sans cesse.
+Quel profil faut-il attribuer qui permettra de créer/publier un article mais qui ne pourra pas créer/publier de page ? Contributeur.
+
+En base de données (utilisez PhpMyadmin):
+Où sont stockés les Pages et les Articles dans la BDD ? Dans la table wp_posts
+Où sont stockés les Utilisateurs ? Dans la table wp_users
+Expliquez en une ou deux phrases ce que contient la table terms et term_taxonomy ?
+La table terms contient les noms des menus du site. La table term_taxonomy contient les catégories des articles et menus.
+
+
+Quels champs (dans la table post et dans la table user) qui font le lien entre un post et son/ses auteur(s) ? post_author
+
+
+Quel champs permet de différencier un article(post) d'une page dans la table posts ? post_type
+
+
+Que doit-on mettre en fin d'url pour accéder à l'interface d'administration ? wp-admin
+
+

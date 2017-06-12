@@ -1,0 +1,39 @@
+﻿Titre : Mon site Wordpress
+
+identifiant : elo062
+
+nouveau mdp : m******62
+
+
+
+Notes :
+Pour l'envoi d'image/PDF dans wordpress supérieur à 2M, il faut configurer php(donc php.ini comme pour le display error) qui par défaut limite à 2M les envoi de fichier sur le serveur
+
+- Configurez php.ini pour l'envoi de fichier supérieur à 2MB:  
+Faire « locate php.ini » ou « locate php.ini | grep apache2 » et repérer où se situe celui de wordpress
+ex : /etc/php/7.0/apache2/php.ini  
+Puis l'éditer en root ou grâce à sudo avec nano :
+
+upload_max_filesize = 2M  
+à  
+upload_max_filesize = 20  
+
+Mais aussi la variable:  
+post_max_size = 8M  
+à  
+post_max_size = 20M  
+
+Puis comme d'habitude, redémarrer le serveur APACHE
+service apache2 restart
+
+
+
+
+
+Url vers Wordpress : 192.168.1.105/wordpress/wp-admin
+
+
+Autre admin : bibi / cbK$ns^xKP6X3Lk84qOEeA71
+Editeur : Editeur / Xnr!olUIha8*zyVO1eoFaV0C
+auteur : Auteur / H3vbtJI(CxCTicLL^Tz9Ttg9
+contributeur : Contributeur / t#%7*3Vuqe3#$Ta3^osVw^5C
