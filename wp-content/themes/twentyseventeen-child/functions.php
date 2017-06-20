@@ -1,120 +1,85 @@
 <?php
-// function wpm_custom_post_type() {
-//
-// 	// On rentre les différentes dénominations de notre custom post type qui seront affichées dans l'administration
-// 	$labels = array(
-// 		// Le nom au pluriel
-// 		'name'                => _x( 'Séries TV', 'Post Type General Name'),
-// 		// Le nom au singulier
-// 		'singular_name'       => _x( 'Série TV', 'Post Type Singular Name'),
-// 		// Le libellé affiché dans le menu
-// 		'menu_name'           => __( 'Séries TV'),
-// 		// Les différents libellés de l'administration
-// 		'all_items'           => __( 'Toutes les séries TV'),
-// 		'view_item'           => __( 'Voir les séries TV'),
-// 		'add_new_item'        => __( 'Ajouter une nouvelle série TV'),
-// 		'add_new'             => __( 'Ajouter'),
-// 		'edit_item'           => __( 'Editer la séries TV'),
-// 		'update_item'         => __( 'Modifier la séries TV'),
-// 		'search_items'        => __( 'Rechercher une série TV'),
-// 		'not_found'           => __( 'Non trouvée'),
-// 		'not_found_in_trash'  => __( 'Non trouvée dans la corbeille'),
-// 	);
-//
-// 	// On peut définir ici d'autres options pour notre custom post type
-//
-// 	$args = array(
-// 		'label'               => __( 'Séries TV'),
-// 		'description'         => __( 'Tous sur séries TV'),
-// 		'labels'              => $labels,
-// 		// On définit les options disponibles dans l'éditeur de notre custom post type ( un titre, un auteur...)
-// 		'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields', ),
-// 		/*
-// 		* Différentes options supplémentaires
-// 		*/
-// 		'hierarchical'        => false,
-// 		'public'              => true,
-// 		'has_archive'         => true,
-// 		'rewrite'			  => array( 'slug' => 'series-tv'),
-//
-// 	);
-//
-// 	// On enregistre notre custom post type qu'on nomme ici "serietv" et ses arguments
-// 	register_post_type( 'seriestv', $args );
-//
-// }
-//
-// add_action( 'init', 'wpm_custom_post_type', 0 );
 
+// add_theme_support( 'post-thumbnails' );
 
+add_action( 'init', 'create_post_type' );
 
+function create_post_type() {
 
+/* notre code PHP pour rajouter les custom post type */
 
-function wpm_custom_post_type() {
+register_post_type(
 
-	// On rentre les différentes dénominations de notre custom post type qui seront affichées dans l'administration
-	$labels = array(
-		// Le nom au pluriel
-		'name'                => _x( 'Trombinoscope', 'Post Type General Name'),
-		// Le nom au singulier
-		'singular_name'       => _x( 'Trombinoscope', 'Post Type Singular Name'),
-		// Le libellé affiché dans le menu
-		'menu_name'           => __( 'Trombinoscope'),
-		// Les différents libellés de l'administration
+  'Trombinoscope',
 
+  array(
 
+    'label' => 'Apprenant.e.s',
 
-		'all_items'           => __( 'Toutes les apprenant'),
-		'view_item'           => __( 'Voir les apprenants'),
-		'add_new_item'        => __( 'Ajouter un apprenant'),
-		'add_new'             => __( 'Ajouter'),
-		'edit_item'           => __( 'Editer'),
-		'update_item'         => __( 'Modifier'),
-		'search_items'        => __( 'Rechercher'),
-		'not_found'           => __( 'Non trouvé'),
-		'not_found_in_trash'  => __( 'Non trouvée dans la corbeille'),
-	);
+    'labels' => array(
 
-	// On peut définir ici d'autres options pour notre custom post type
+      'name' => 'Apprenant.e.s',
 
-	$args = array(
-		'label'               => __( 'Ajoutez un.e apprenant.e'),
-		'description'         => __( 'Infos apprenants'),
-		'labels'              => $labels,
-		// On définit les options disponibles dans l'éditeur de notre custom post type ( un titre, un auteur...)
-		'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields', ),
-		/*
-		* Différentes options supplémentaires
-		*/
-		'hierarchical'        => false,
-		'public'              => true,
-		'has_archive'         => true,
-		'rewrite'			  => array( 'slug' => 'series-tv'),
+      'singular_name' => 'Apprenant.e.s',
 
-	);
+      'all_items' => 'Tous les apprenant.e.s',
 
-	// On enregistre notre custom post type qu'on nomme ici "serietv" et ses arguments
-	register_post_type( 'seriestv', $args );
+      'add_new_item' => 'Ajouter un apprenant.e.s',
+
+      'edit_item' => 'Éditer un apprenant.e.s',
+
+      'new_item' => 'Nouveau apprenant.e.s',
+
+      'view_item' => 'Voir un apprenat.e.s',
+
+      'search_items' => 'Rechercher parmi les apprenant.e.s',
+
+      'not_found' => 'Pas dapprenant.e.s trouvé',
+
+      'not_found_in_trash'=> 'Pas dapprenant.e.s dans la corbeille'
+
+      ),
+
+    'public' => true,
+
+    'capability_type' => 'post',
+
+    'supports' => array(
+
+      'title',
+
+      'editor',
+
+      'thumbnail',
+
+      'custom-fields'
+
+    ),
+
+    'has_archive' => true
+
+  )
+
+);
 
 }
 
-add_action( 'init', 'wpm_custom_post_type', 0 );
-
-
-
-// Ajout de custom post field :
-
-
 add_action('wp_insert_post', 'wpc_champs_personnalises_defaut');
+
  function wpc_champs_personnalises_defaut($post_id)
+
  {
+
  if ( $_GET['post_type'] != 'page' ) {
- add_post_meta($post_id, 'Prénom', '', true);
- add_post_meta($post_id, 'lien CV', '', true);
- add_post_meta($post_id, 'lien linkedin', '', true);
- add_post_meta($post_id, 'lien Github', '', true);
+
+ add_post_meta($post_id, 'Linkedin', '', true);
+
+ add_post_meta($post_id, 'Github', '', true);
+
  }
+
  return true;
+
  }
 
 ?>

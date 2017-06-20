@@ -1,0 +1,28 @@
+﻿On se met en root :
+elo@debian:~$ su
+Mot de passe : 
+
+On rentre la commande pour chercher le fichier php.ini
+root@debian:/home/elo# locate php.ini
+
+Il nous affiche une liste de différents fichiers php.ini :
+
+/etc/php5/apache2/php.ini
+/etc/php5/cli/php.ini
+/home/elo/nom_de_mon_projet/vendor/doctrine/cache/tests/travis/php.ini
+/home/elo/nom_de_mon_projet/vendor/doctrine/doctrine-cache-bundle/Tests/travis/php.ini
+/nom_de_mon_projet/vendor/doctrine/cache/tests/travis/php.ini
+/nom_de_mon_projet/vendor/doctrine/doctrine-cache-bundle/Tests/travis/php.ini
+/usr/share/php5/php.ini-development
+/usr/share/php5/php.ini-production
+/usr/share/php5/php.ini-production.cli
+/var/www/html/autre/cours_Simplon_2016/julieschool/vendor/doctrine/cache/tests/travis/php.ini
+/var/www/html/autre/cours_Simplon_2016/julieschool/vendor/doctrine/doctrine-cache-bundle/Tests/travis/php.ini
+
+On ouvre le fichier qui nous intéresse :
+root@debian:/home/elo# nano /etc/php5/apache2/php.ini
+
+On a cherché (ctrl w) «upload » et augmenté à 20M upload_max_filesize et max_file_uploads.
+
+On redémarre apache :
+root@debian:/home/elo# service apache2 restart
